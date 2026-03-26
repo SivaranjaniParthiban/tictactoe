@@ -4,7 +4,12 @@ const host = import.meta.env.VITE_NAKAMA_HOST || "lila-tictactoe-production.up.r
 const port = import.meta.env.VITE_NAKAMA_PORT || "7350";
 const useSSL = import.meta.env.VITE_NAKAMA_SSL === "true";
 
-export const client = new Client("defaultkey", host, port, useSSL);
+export const client = new Client(
+  "defaultkey",
+  "lila-tictactoe-production.up.railway.app",
+  "443",
+  true
+);
 
 let session: Session | null = null;
 let socket: Socket | null = null;
