@@ -1,15 +1,19 @@
 import { Client, Session, Socket } from "@heroiclabs/nakama-js";
 
-const host = import.meta.env.VITE_NAKAMA_HOST || "lila-tictactoe-production.up.railway.app";
-const port = import.meta.env.VITE_NAKAMA_PORT || "7350";
- const useSSL = import.meta.env.VITE_NAKAMA_SSL === "true";
+const host = import.meta.env.VITE_NAKAMA_HOST;
+const port = import.meta.env.VITE_NAKAMA_PORT;
+const useSSL = import.meta.env.VITE_NAKAMA_SSL === "true";
 
-export const client = new Client(
-  "defaultkey",
-  host,
-  port,
-  useSSL
-);
+export const client = new Client("defaultkey", host, port, useSSL);
+```
+
+Also make sure you **re-deployed to Vercel** after the change — Vite bakes env vars at build time, so a code change alone isn't enough if the env vars weren't set in Vercel's dashboard too.
+
+Go to **Vercel → lila-tictactoe → Settings → Environment Variables** and add:
+```
+VITE_NAKAMA_HOST = lila-tictactoe-production.up.railway.app
+VITE_NAKAMA_PORT = 443
+VITE_NAKAMA_SSL  = true
 
 let session: Session | null = null;
 let socket: Socket | null = null;
