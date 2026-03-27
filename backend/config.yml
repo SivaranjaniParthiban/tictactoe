@@ -2,8 +2,9 @@ console:
   port: 7351
   cors_allowed_origins:
     - "https://lila-tictactoe-eta.vercel.app"
-    - "https://lila-tictactoe-sivas-projects-4552e9c8.vercel.app"
     - "https://lila-tictactoe-nu.vercel.app"
+    - "https://lila-tictactoe-b3u3ii5lt-sivas-projects-4552e9c8.vercel.app"
+    - "https://lila-tictactoe-sivas-projects-4552e9c8.vercel.app"
 
 runtime:
   http_key: "defaultkey"
