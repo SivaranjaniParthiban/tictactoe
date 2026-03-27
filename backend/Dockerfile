@@ -20,4 +20,14 @@ FROM registry.heroiclabs.com/heroiclabs/nakama:3.22.0
 COPY --from=builder /app/build/main.js /nakama/data/modules/main.js
 COPY config.yml /nakama/data/config.yml
 
-CMD ["sh", "-c", "nakama migrate up --database.address $DATABASE_URL && nakama --config /nakama/data/config.yml"]
+# Strip postgres:// from DATABASE_URL and pass directly via flag
+CMD ["sh", "-c", "DB=$(echo $DATABASE_URL | sed 's|postgres://||') && \
+    nakama migrate up --database.address $DB && \
+    nakama \
+      --config /nakama/data/config.yml \
+      --database.address $DB \
+      --socket.port 7350 \
+      --console.port 7351 \
+      --http.port 7349 \
+      --runtime.path /nakama/data/modules \
+      --runtime.js_entrypoint main.js"]
