@@ -1,18 +1,14 @@
 {
-  "name": "backend",
+  "name": "lila-tictactoe-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-  "build": "esbuild src/main.ts --bundle=false --outfile=build/main.js --platform=node --target=es2017",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx esbuild src/main.ts --bundle --platform=node --target=es2017 --outfile=build/main.js --external:@heroiclabs/nakama-runtime",
+    "watch": "npx esbuild src/main.ts --bundle --platform=node --target=es2017 --outfile=build/main.js --external:@heroiclabs/nakama-runtime --watch"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "devDependencies": {
-    "esbuild": "^0.27.4",
-    "nakama-runtime": "github:heroiclabs/nakama-common",
-    "typescript": "^5.9.3"
+    "@heroiclabs/nakama-runtime": "^7.8.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.0.0"
   }
 }
