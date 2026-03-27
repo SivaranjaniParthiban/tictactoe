@@ -3,13 +3,12 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install --save-dev esbuild || npm init -y && npm install --save-dev esbuild
+# Only install esbuild — nakama-runtime types are external and not on npm
+RUN npm install -g esbuild
 
 COPY src ./src
 
-RUN npx esbuild src/main.ts \
+RUN esbuild src/main.ts \
     --bundle \
     --platform=node \
     --target=es2017 \
