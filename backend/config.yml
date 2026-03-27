@@ -6,9 +6,11 @@ console:
   cors_allowed_origins:
     - "https://lila-tictactoe-eta.vercel.app"
     - "https://lila-tictactoe-sivas-projects-4552e9c8.vercel.app"
+    - "https://lila-tictactoe-nu.vercel.app"
 
 runtime:
   http_key: "defaultkey"
+  js_entrypoint: "main.js"
 
 socket:
   port: 7350
