@@ -1,6 +1,3 @@
-database:
-  connection_string: "${DATABASE_URL}"
-
 console:
   port: 7351
   cors_allowed_origins:
