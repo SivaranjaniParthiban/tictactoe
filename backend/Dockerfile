@@ -6,7 +6,7 @@ COPY config.yml /nakama/data/config.yml
 CMD ["sh", "-c", "\
   mkdir -p /tmp/modules && \
   echo \"$MAIN_JS_B64\" | base64 -d > /tmp/modules/main.js && \
-  DB_ADDR=$(echo \"$DATABASE_URL\" | sed 's|^postgresql://||;s|^postgres://||;s|?.*||') && \
+  DB_ADDR=$(echo \"$DATABASE_URL\" | sed 's|^postgresql://||;s|^postgres://||') && \
   nakama migrate up --database.address \"$DB_ADDR\" && \
   exec nakama \
     --config /nakama/data/config.yml \
