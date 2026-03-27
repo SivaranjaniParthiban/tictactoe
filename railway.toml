@@ -2,6 +2,7 @@
 dockerfilePath = "backend/Dockerfile"
 
 [deploy]
+startCommand = "/nakama/entrypoint.sh"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3
