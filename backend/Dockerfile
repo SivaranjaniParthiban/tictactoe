@@ -18,9 +18,12 @@ RUN esbuild src/main.ts \
 FROM registry.heroiclabs.com/heroiclabs/nakama:3.22.0
 
 # Cache bust - increment this number to force Railway to rebuild
-ARG CACHE_BUST=3
+ARG CACHE_BUST=7
 
 COPY --from=builder /app/build/main.js /nakama/data/modules/main.js
 COPY config.yml /nakama/data/config.yml
+COPY entrypoint.sh /nakama/entrypoint.sh
+COPY nakama-wrapper.sh /usr/local/bin/nakama
+RUN chmod +x /nakama/entrypoint.sh /usr/local/bin/nakama
 
-CMD ["sh", "-c", "nakama migrate up --database.address $NAKAMA_DATABASE_ADDRESS && nakama --config /nakama/data/config.yml --database.address $NAKAMA_DATABASE_ADDRESS --socket.port 7350 --console.port 7351 --http.port 7349 --runtime.path /nakama/data/modules --runtime.js_entrypoint main.js"]
+ENTRYPOINT ["/nakama/entrypoint.sh"]
