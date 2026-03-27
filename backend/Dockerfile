@@ -23,5 +23,7 @@ ARG CACHE_BUST=7
 COPY --from=builder /app/build/main.js /nakama/data/modules/main.js
 COPY config.yml /nakama/data/config.yml
 COPY entrypoint.sh /nakama/entrypoint.sh
+COPY nakama-wrapper.sh /usr/local/bin/nakama
+RUN chmod +x /nakama/entrypoint.sh /usr/local/bin/nakama
 
 ENTRYPOINT ["/nakama/entrypoint.sh"]
