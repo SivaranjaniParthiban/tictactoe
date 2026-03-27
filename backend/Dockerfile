@@ -3,7 +3,6 @@ FROM node:18-alpine AS builder
 
 WORKDIR /app
 
-# Only install esbuild — nakama-runtime types are external and not on npm
 RUN npm install -g esbuild
 
 COPY src ./src
@@ -21,4 +20,4 @@ FROM registry.heroiclabs.com/heroiclabs/nakama:3.22.0
 COPY --from=builder /app/build/main.js /nakama/data/modules/main.js
 COPY config.yml /nakama/data/config.yml
 
-CMD ["/nakama/nakama", "--config", "/nakama/data/config.yml"]
+CMD ["sh", "-c", "nakama migrate up --database.address $DATABASE_URL && nakama --config /nakama/data/config.yml"]
