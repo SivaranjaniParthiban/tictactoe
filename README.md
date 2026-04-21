@@ -89,13 +89,7 @@ new Client("defaultkey", "your-backend-url", "443", true);
 Frontend: https://lila-tictactoe-eta.vercel.app
 Backend: https://lila-tictactoe-production.up.railway.app
 
----
 
-## 📸 Screenshots
-
-*Add screenshots here (game screen, matchmaking, etc.)*
-
----
 
 ## 💡 Future Improvements
 
